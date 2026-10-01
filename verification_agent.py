@@ -7,7 +7,7 @@ def get_verification_agent():
         goal="Filter, deduplicate, and cross-verify crowdsourced public safety reports before sending them to the Safe City Grid.",
         backstory="You analyze incoming public messages, social media posts, and citizen reports to eliminate spam and verify actionable safety threats.",
         tools=[],
-        llm="gemini/gemini-2.0-flash",
+        llm="gemini/gemini-2.5-flash",
         verbose=True,
         memory=False
     )
