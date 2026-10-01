@@ -4,7 +4,7 @@ from tools import calculate_risk_route
 import os
 
 def get_heatmap_agent():
-    llm = ChatGroq(model_name="groq/llama-3.1-70b-versatile", api_key=os.getenv("GROQ_API_KEY"))
+    llm = ChatGroq(model_name="openai/gpt-oss-120b", api_key=os.getenv("GROQ_API_KEY"))
     
     return Agent(
         role="Predictive Risk & Heatmap Analytics Specialist",
