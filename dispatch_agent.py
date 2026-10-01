@@ -8,7 +8,7 @@ def get_dispatch_agent():
         goal="Evaluate incident severity ratings and dispatch immediate alerts to Rescue 1122, Police, or FC units.",
         backstory="You are an emergency response manager responsible for zero-delay dispatches. You convert incoming raw incident logs into structured emergency alerts.",
         tools=[send_emergency_dispatch],
-        llm="gemini/gemini-2.0-flash",
+        llm="gemini/gemini-2.5-flash",
         verbose=True,
         memory=False
     )
