@@ -7,7 +7,7 @@ def get_tracking_agent():
         goal="Track target vehicles or individuals across multi-camera RTSP feeds using visual description and ANPR metadata.",
         backstory="You are an expert surveillance tracker at Quetta Safe City Command Room. You analyze movement vectors, license plates, and multi-camera timestamps to plot target trajectories on city maps.",
         tools=[],
-        llm="gemini/gemini-2.0-flash",
+        llm="gemini/gemini-2.5-flash",
         verbose=True,
         memory=False
     )
