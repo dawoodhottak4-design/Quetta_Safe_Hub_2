@@ -6,10 +6,10 @@ import folium
 from streamlit_folium import st_folium
 
 # Import Modular Agents
-from agents.tracking_agent import get_tracking_agent
-from agents.dispatch_agent import get_dispatch_agent
-from agents.heatmap_agent import get_heatmap_agent
-from agents.verification_agent import get_verification_agent
+from tracking_agent import get_tracking_agent
+from dispatch_agent import get_dispatch_agent
+from heatmap_agent import get_heatmap_agent
+from verification_agent import get_verification_agent
 
 load_dotenv()
 
