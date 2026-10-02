@@ -1,19 +1,12 @@
 import os
 import streamlit as st
-import crewai.llms.cache as _crewai_cache
+
+# CrewAI Telemetry and EventBus Errors bypass
+os.environ["CREWAI_TELEMETRY_OPT_OUT"] = "true"
+os.environ["OTEL_SDK_DISABLED"] = "true"
+
 from crewai import Agent, LLM
 from crewai_tools import SerperDevTool
-
-# -------------------------------------------------------------
-# Fix for CrewAI Bug #5886 (Groq cache_breakpoint rejection)
-# -------------------------------------------------------------
-_original_mark_cache = getattr(_crewai_cache, "mark_cache_breakpoint", None)
-def _noop_mark_cache(*args, **kwargs):
-    return None
-
-if _original_mark_cache:
-    _crewai_cache.mark_cache_breakpoint = _noop_mark_cache
-
 
 def get_llm():
     api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
@@ -21,7 +14,7 @@ def get_llm():
         st.error("GROQ_API_KEY nahi mili! Streamlit secrets check karain.")
         st.stop()
     
-    # CrewAI LLM pointing directly to Groq
+    # Clean Groq LLM setup for openai/gpt-oss-120b
     return LLM(
         model="groq/openai/gpt-oss-120b",
         api_key=api_key,
