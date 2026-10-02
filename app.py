@@ -9,7 +9,7 @@ st.set_page_config(
 )
 
 st.title("🛡️ Quetta Safe Hub 2.0")
-# Fix: st.subtitle ko replace karke st.subheader / st.caption use kiya hai
+# Fix: st.subtitle ko st.caption se replace kiya hai
 st.caption("Autonomous Civic Safety & Intelligence Network")
 
 st.markdown("""
@@ -42,4 +42,4 @@ if st.button("Generate Safety Report", type="primary"):
                 
             except Exception as e:
                 st.error(f"Execution Error: {str(e)}")
-                st.info("Tip: Ensure your Gemini API key is valid and has active quota.")
+                st.info("Tip: Ensure your Gemini API key is valid and has active quota in Streamlit Secrets.")
