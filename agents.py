@@ -1,28 +1,26 @@
 import os
 import streamlit as st
-from crewai import Agent
-from langchain_google_genai import ChatGoogleGenerativeAI
+from crewai import Agent, LLM
 from crewai_tools import SerperDevTool
 
 def get_llm():
     # Streamlit Secrets se API Key read karna
     api_key = st.secrets.get("GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
     if not api_key:
-        st.error("GEMINI_API_KEY nahi mili! Secret file check karain.")
+        st.error("GEMINI_API_KEY nahi mili! Streamlit secrets check karain.")
         st.stop()
     
-    # Gemini 2.0 Flash / Gemini 1.5 Flash Model Config
-    return ChatGoogleGenerativeAI(
-        model="gemini-1.5-flash",
-        verbose=True,
-        temperature=0.3,
-        google_api_key=api_key
+    # CrewAI Native LLM Configuration (Pydantic validation fix)
+    return LLM(
+        model="gemini/gemini-1.5-flash",
+        api_key=api_key,
+        temperature=0.3
     )
 
 def create_agents():
     llm = get_llm()
     
-    # Standard Web Search Tool (No local scraping / no local setup required)
+    # Standard Web Search Tool (Optional)
     search_tool = SerperDevTool() if st.secrets.get("SERPER_API_KEY") else None
     tools_list = [search_tool] if search_tool else []
 
