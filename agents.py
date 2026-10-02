@@ -10,9 +10,9 @@ def get_llm():
         st.error("GEMINI_API_KEY nahi mili! Streamlit secrets check karain.")
         st.stop()
     
-    # CrewAI Native LLM Configuration (Pydantic validation fix)
+    # CrewAI LiteLLM standard Gemini endpoint
     return LLM(
-        model="gemini/gemini-1.5-flash",
+        model="gemini/gemini-2.0-flash",
         api_key=api_key,
         temperature=0.3
     )
