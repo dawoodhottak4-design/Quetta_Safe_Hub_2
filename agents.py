@@ -4,15 +4,15 @@ from crewai import Agent, LLM
 from crewai_tools import SerperDevTool
 
 def get_llm():
-    # Streamlit Secrets se API Key read karna
-    api_key = st.secrets.get("GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
+    # Streamlit Secrets se Groq API Key lena
+    api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
     if not api_key:
-        st.error("GEMINI_API_KEY nahi mili! Streamlit secrets check karain.")
+        st.error("GROQ_API_KEY nahi mili! Streamlit secrets me GROQ_API_KEY add karain.")
         st.stop()
     
-    # CrewAI LiteLLM standard Gemini endpoint
+    # Direct Groq LLM Provider Integration
     return LLM(
-        model="gemini/gemini-2.0-flash",
+        model="groq/llama-3.3-70b-versatile",
         api_key=api_key,
         temperature=0.3
     )
@@ -20,7 +20,7 @@ def get_llm():
 def create_agents():
     llm = get_llm()
     
-    # Standard Web Search Tool (Optional)
+    # Optional Search Tool (Agar SERPER_API_KEY ho)
     search_tool = SerperDevTool() if st.secrets.get("SERPER_API_KEY") else None
     tools_list = [search_tool] if search_tool else []
 
