@@ -27,7 +27,8 @@ if st.button("Generate Safety Report", type="primary"):
     if not user_input.strip():
         st.warning("Please enter a valid topic or area name.")
     else:
-        with st.spinner("Analyzing safety data with Groq Llama 3.3..."):
+        # Line 30 updated according to openai/gpt-oss-120b model
+        with st.spinner("Analyzing safety data with Groq GPT-OSS-120B..."):
             try:
                 final_report = run_safe_hub_pipeline(user_input)
                 
