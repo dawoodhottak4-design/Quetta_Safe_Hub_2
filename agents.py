@@ -11,7 +11,7 @@ def get_llm():
     
     # Force Groq OpenAI-compatible Endpoint
     return LLM(
-        model="whisper-large-v3",
+        model="openai/gpt-oss-safeguard-20b",
         base_url="https://api.groq.com/openai/v1",
         api_key=api_key,
         temperature=0.3
