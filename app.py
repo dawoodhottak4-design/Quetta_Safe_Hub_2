@@ -9,8 +9,7 @@ st.set_page_config(
 )
 
 st.title("🛡️ Quetta Safe Hub 2.0")
-# Fix: st.subtitle ko st.caption se replace kiya hai
-st.caption("Autonomous Civic Safety & Intelligence Network")
+st.caption("Autonomous Civic Safety & Intelligence Network (Powered by Groq & CrewAI)")
 
 st.markdown("""
 Welcome to **Quetta Safe Hub**. Enter a specific civic issue, area name (e.g., *Spini Road traffic*, *Sariab Road infrastructure*), or general safety topic below to generate a real-time risk assessment report.
@@ -28,18 +27,16 @@ if st.button("Generate Safety Report", type="primary"):
     if not user_input.strip():
         st.warning("Please enter a valid topic or area name.")
     else:
-        with st.spinner("Analyzing safety data and generating response..."):
+        with st.spinner("Analyzing safety data with Groq Llama 3.3..."):
             try:
-                # Execution
                 final_report = run_safe_hub_pipeline(user_input)
                 
                 st.success("Analysis Complete!")
                 st.divider()
                 
-                # Output display
                 st.markdown("### 📋 Civic Safety Intelligence Report")
                 st.markdown(str(final_report))
                 
             except Exception as e:
                 st.error(f"Execution Error: {str(e)}")
-                st.info("Tip: Ensure your Gemini API key is valid and has active quota in Streamlit Secrets.")
+                st.info("Tip: Ensure GROQ_API_KEY is saved in Streamlit Secrets.")
