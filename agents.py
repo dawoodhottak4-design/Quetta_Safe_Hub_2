@@ -1,7 +1,7 @@
 import os
 import streamlit as st
 
-# CrewAI Telemetry and EventBus Errors bypass
+# Telemetry disable for stability
 os.environ["CREWAI_TELEMETRY_OPT_OUT"] = "true"
 os.environ["OTEL_SDK_DISABLED"] = "true"
 
@@ -14,9 +14,10 @@ def get_llm():
         st.error("GROQ_API_KEY nahi mili! Streamlit secrets check karain.")
         st.stop()
     
-    # Clean Groq LLM setup for openai/gpt-oss-120b
+    # Native OpenAI provider mapped directly to Groq endpoint
     return LLM(
-        model="groq/openai/gpt-oss-120b",
+        model="openai/openai/gpt-oss-120b",
+        base_url="https://api.groq.com/openai/v1",
         api_key=api_key,
         temperature=0.3
     )
