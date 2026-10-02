@@ -9,7 +9,8 @@ st.set_page_config(
 )
 
 st.title("🛡️ Quetta Safe Hub 2.0")
-st.subtitle("Autonomous Civic Safety & Intelligence Network")
+# Fix: st.subtitle ko replace karke st.subheader / st.caption use kiya hai
+st.caption("Autonomous Civic Safety & Intelligence Network")
 
 st.markdown("""
 Welcome to **Quetta Safe Hub**. Enter a specific civic issue, area name (e.g., *Spini Road traffic*, *Sariab Road infrastructure*), or general safety topic below to generate a real-time risk assessment report.
