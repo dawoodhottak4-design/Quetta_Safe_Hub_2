@@ -1,5 +1,5 @@
 import streamlit as st
-from crew.py import run_safe_hub_pipeline
+from crew import run_safe_hub_pipeline
 
 # Page Configuration
 st.set_page_config(
