@@ -1,16 +1,27 @@
 import os
 import streamlit as st
+import crewai.llms.cache as _crewai_cache
 from crewai import Agent, LLM
 from crewai_tools import SerperDevTool
 
+# -------------------------------------------------------------
+# Fix for CrewAI Bug #5886 (Groq cache_breakpoint rejection)
+# -------------------------------------------------------------
+_original_mark_cache = getattr(_crewai_cache, "mark_cache_breakpoint", None)
+def _noop_mark_cache(*args, **kwargs):
+    return None
+
+if _original_mark_cache:
+    _crewai_cache.mark_cache_breakpoint = _noop_mark_cache
+
+
 def get_llm():
-    # Streamlit Secrets se GROQ_API_KEY read karna
     api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
     if not api_key:
         st.error("GROQ_API_KEY nahi mili! Streamlit secrets check karain.")
         st.stop()
     
-    # Pure CrewAI Native LLM class with Groq prefix for gpt-oss-120b
+    # CrewAI LLM pointing directly to Groq
     return LLM(
         model="groq/openai/gpt-oss-120b",
         api_key=api_key,
