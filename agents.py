@@ -4,15 +4,15 @@ from crewai import Agent, LLM
 from crewai_tools import SerperDevTool
 
 def get_llm():
+    # Streamlit Secrets se GROQ_API_KEY read karna
     api_key = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
     if not api_key:
         st.error("GROQ_API_KEY nahi mili! Streamlit secrets check karain.")
         st.stop()
     
-    # Force Groq OpenAI-compatible Endpoint
+    # Pure CrewAI Native LLM class with Groq prefix for gpt-oss-120b
     return LLM(
-        model="openai/gpt-oss-120b",
-        base_url="https://api.groq.com/openai/v1",
+        model="groq/openai/gpt-oss-120b",
         api_key=api_key,
         temperature=0.3
     )
