@@ -1,9 +1,0 @@
-streamlit
-crewai
-crewai-tools
-langchain-groq
-langchain-google-genai
-python-dotenv
-folium
-streamlit-folium
-pandas
