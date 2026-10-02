@@ -12,7 +12,7 @@ def get_llm():
     
     # CrewAI LiteLLM standard Gemini endpoint
     return LLM(
-        model="gemini/gemini-3.8-flash",
+        model="gemini/gemini-1.5-flash",
         api_key=api_key,
         temperature=0.3
     )
